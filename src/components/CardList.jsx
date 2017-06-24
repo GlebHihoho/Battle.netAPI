@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
 import axios    from 'axios';
 
-const url = 'https://us.api.battle.net/wow/boss/24723?locale=en_US&apikey=e352rt7h37fh7ehehzcuynmksm4fj8fk';
+import Card from './Card';
+
+const url     = 'https://us.api.battle.net/wow/boss/24723?locale=en_US&apikey=e352rt7h37fh7ehehzcuynmksm4fj8fk';
+const bossUrl = 'https://us.api.battle.net/wow/boss/?locale=en_US&apikey=e352rt7h37fh7ehehzcuynmksm4fj8fk';
 
 class CardList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id : '',
-      name: '',
-      description: ''
-    };
+      bosses : ''
+    }
   }
 
   componentDidMount() {
-    axios.get(url)
-         .then(response => response.data)
-         .then(res => this.setState({
-           id          : res.id,
-           name        : res.name,
-           description : res.description
+    axios.get(bossUrl)
+          .then(res => res.data)
+          .then(res => this.setState({
+            bosses : res.bosses
           }))
   }
 
 
   render() {
+    console.log(this.state.bosses)
     return (
-      <div>
-        <div>{this.state.id}</div>
-        <div>{this.state.name}</div>
-        <div>{this.state.description}</div>
+      <div className="card-list">
+        {
+          !this.state.bosses
+            ? <div className="loader">Loading...</div>
+            : this.state.bosses.map(boss => <Card key={boss.id} boss={boss}/>)
+        }
       </div>
     )
   }
