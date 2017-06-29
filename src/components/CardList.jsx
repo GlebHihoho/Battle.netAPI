@@ -3,35 +3,36 @@ import axios    from 'axios';
 
 import Card from './Card';
 
-const url     = 'https://us.api.battle.net/wow/boss/24723?locale=en_US&apikey=e352rt7h37fh7ehehzcuynmksm4fj8fk';
-const bossUrl = 'https://us.api.battle.net/wow/boss/?locale=en_US&apikey=e352rt7h37fh7ehehzcuynmksm4fj8fk';
+const cardUrl = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards';
+const headers = { "X-Mashape-Key" : "ZDXXrbn7fhmshIHGnLYdPiKozzLGp1rFAPujsns0ULQjtcrmpJ" }
 
 class CardList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bosses : ''
+      Basic : ''
     }
   }
 
   componentDidMount() {
-    axios.get(bossUrl)
+    axios.get(cardUrl, { headers })
           .then(res => res.data)
           .then(res => this.setState({
-            bosses : res.bosses
+            Basic : res.Basic
           }))
   }
 
-
   render() {
-    console.log(this.state.bosses)
+    console.log(this.state.Basic);
+
     return (
       <div className="card-list">
+
         {
-          !this.state.bosses
+          !this.state.Basic
             ? <div className="loader">Loading...</div>
-            : this.state.bosses.map(boss => <Card key={boss.id} boss={boss}/>)
+            : this.state.Basic.map(card => <Card key={card.cardId} card={card}/>)
         }
       </div>
     )
