@@ -13,11 +13,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      Basic : ''
-    }
-
-    this.update = {
-      Basic : ''
+      cards : '',
+      allCards : ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,21 +23,19 @@ class App extends React.Component {
   handleChange(event) {
     const value = event.target.value.toLowerCase();
 
-    const newBasic = Object.assign({}, this.state).Basic.filter(card => card.name.toLowerCase().includes(value));
+    const newCards = this.state.allCards.filter(card => card.name.toLowerCase().includes(value));
 
     this.setState({
-      Basic : newBasic
+      cards : newCards,
     })
-    // this.update.Basic = newBasic;
-
-    console.log(this.state.Basic)
   }
 
   componentDidMount() {
     axios.get(cardUrl, { headers })
           .then(res => res.data)
           .then(res => this.setState({
-            Basic : res.Basic
+            cards: res.Basic,
+            allCards: res.Basic
           }))
   }
 
@@ -48,7 +43,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onStatusChange={this.handleChange} />
-        <CardList Basic={this.state.Basic} />
+        <CardList Basic={this.state.cards} />
       </div>
     )
   }
