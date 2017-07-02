@@ -15,49 +15,72 @@ body {
   color: #3E3E3E;
 }
 
+input {
+  font-family: "PT Sans", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------- */
+/* --------------- SEARCH ----------------- */
+/* ---------------------------------------- */
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  background-color: #33425B;
+  color: #EEEEEE;
+}
+
+.search__field {
+  width: 300px;
+  padding: 10px;
+
+  text-align: center;
+}
+
+
+/* ---------------------------------------- */
+/* ---------------- CARD ------------------ */
+/* ---------------------------------------- */
+
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  margin-top: 100px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
-  width : 300px;
+  /*flex-grow: 1;*/
+  /*width : 400px;*/
   padding: 10px;
   margin: 10px;
 
   background-color: #D72323;
-  /*color: #3A4750;*/
   color: #EEEEEE;
   border: 1px solid #D72323;
   border-radius: 5px;
 }
 
-.card__description {
-  text-align: justify;
-}
-
-/*.card__h1 {
-  color: #68868C;
-}
-
-.card__health {
-  color: #55A44E;
-}
-
-.card__level {
-  color: #FAEE1C;
-}*/
-
-.card__footer {
-  display: flex;
-  justify-content: space-between;
-
-  font-size: 15px;
+.card__image {
+  width: 337px;
+  height: 465px;
 }
 
 .loader {

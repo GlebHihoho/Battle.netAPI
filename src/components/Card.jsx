@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import CardDescription from './CardDescription';
 
 function Card(props) {
-  const {health, cost, name, text, img, imgGold} = props.card;
+  const {name, attack, health, faction, cost, playerClass, rapity, type, howToGetGold, cardSet, img, dbfId} = props.card;
+
+  const valueInCardDescription = {
+    name, attack, health, faction, cost, playerClass, rapity, type, howToGetGold, cardSet, dbfId
+  }
+
+  if (!img) {
+    return null;
+  }
+
   return (
     <div className="card" >
-      <div className="card__header">
-        <h1 className="card__h1">{name}</h1>
-        <p className="card__description">{text}</p>
-        <img src={img} />
+      <div className="card__description">
+        <CardDescription cardProps={valueInCardDescription} />
       </div>
-      <div className="card__footer">
-        <div className="card__health">HP {health}</div>
-        <div className="card__level"> Cost {cost}</div>
-      </div>
+      <img className="card__image" src={img} alt="" width="337" height="465" />
     </div>
   )
 }
