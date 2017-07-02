@@ -15,10 +15,52 @@ body {
   color: #3E3E3E;
 }
 
+input {
+  font-family: "PT Sans", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------- */
+/* --------------- SEARCH ----------------- */
+/* ---------------------------------------- */
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  background-color: #33425B;
+  color: #EEEEEE;
+}
+
+.search__field {
+  width: 300px;
+  padding: 10px;
+
+  text-align: center;
+}
+
+
+/* ---------------------------------------- */
+/* ---------------- CARD ------------------ */
+/* ---------------------------------------- */
+
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  margin-top: 100px;
 }
 
 .card {
