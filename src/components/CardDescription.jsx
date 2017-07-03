@@ -40,7 +40,7 @@ function CardDescription(props) {
       title : 'Набор',
       value : cardSet
     }
-  ]
+  ];
 
   return (
     <ul className="card__list" >
