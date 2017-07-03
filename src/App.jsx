@@ -53,12 +53,27 @@ class App extends React.Component {
 
   handleOpenEditCard(refs) {
     const id = refs[refs.length - 1].value;
-    this.setState({
-      // cards: '',
-      // allCards: ''
+    const cardInArray = this.searchCardInCards(id, this.state.allCards)[0];
+
+    const editCardsArray = this.state.allCards.slice();
+
+    for (let i = 0; i < refs.length; i++) {
+      let name = refs[i].title;
+      let value = refs[i].value;
+      cardInArray[name] = value;
+    }
+
+    editCardsArray.forEach(card => {
+      if (card.dbfId == Number(id)) {
+        card = cardInArray;
+      }
     })
-    this.searchCardInCards(id, this.state.allCards);
-    // console.log(this.searchCardInCards(id, this.state.allCards))
+
+    this.setState({
+      cards: editCardsArray,
+      allCards: editCardsArray,
+    })
+
     this.handleCloseEditCard();
   }
 
@@ -81,7 +96,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar onStatusChange={this.handleChange} />
+        {this.state.cards ? <SearchBar onStatusChange={this.handleChange} /> : ''}
         {this.state.openEditCard
           ? <EditCard
                 card={this.state.cards.filter(card => card.dbfId === this.state.idEditCard)[0]}
