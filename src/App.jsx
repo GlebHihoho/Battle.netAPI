@@ -5,15 +5,16 @@ import axios from 'axios';
 import CardList from './components/CardList';
 import SearchBar from './components/SearchBar';
 import EditCard from './components/EditCard';
+import HomePage from './components/HomePage';
 
-const cardUrl = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards';
-const headers = { "X-Mashape-Key" : "ZDXXrbn7fhmshIHGnLYdPiKozzLGp1rFAPujsns0ULQjtcrmpJ" };
+import { headers, SETS_URL, CARD_URL } from './constants/url';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      sets: [],
       cards: '',
       allCards: '',
       openEditCard: false,
@@ -85,18 +86,20 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(cardUrl, { headers })
+    axios.get(SETS_URL, { headers })
           .then(res => res.data)
           .then(res => this.setState({
-            cards: res.Basic,
-            allCards: res.Basic
+            sets: res.standard,
+            // cards: res.Basic,
+            // allCards: res.Basic
           }))
   }
 
   render() {
+    // console.log(this.state.sets)
     return (
-      <div>
-        {this.state.cards ? <SearchBar onStatusChange={this.handleChange} /> : ''}
+      <div className="container">
+        {/*{this.state.cards ? <SearchBar onStatusChange={this.handleChange} /> : ''}
         {this.state.openEditCard
           ? <EditCard
                 card={this.state.cards.filter(card => card.dbfId === this.state.idEditCard)[0]}
@@ -105,7 +108,9 @@ class App extends React.Component {
              />
           : ''
         }
-        <CardList Basic={this.state.cards} onClickBtn={this.handleClickBtn} />
+        <CardList Basic={this.state.cards} onClickBtn={this.handleClickBtn} />*/}
+
+        <HomePage sets={this.state.sets} />
       </div>
     )
   }
