@@ -18,7 +18,7 @@ class App extends React.Component {
       allCards: '',
       openEditCard: false,
       idEditCard: ''
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClickBtn = this.handleClickBtn.bind(this);
